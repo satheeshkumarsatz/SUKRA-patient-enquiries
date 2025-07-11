@@ -1,0 +1,95 @@
+form {
+    margin: 30px auto;
+    width: 60%;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form table {
+    border-collapse: Collapse;
+    width: 90%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+th, td {
+    border: .1px solid #020202;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #a358a39d;
+    color: #333;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #c7d0d12f;
+}
+
+tr:hover {
+    background-color: #b0bbbe;
+}
+
+
+form td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form input[type="submit"],
+form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"]:hover {
+    background-color: #44be13ef;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+button {
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    background-color: #4285f4;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.centered-container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.centered-container table {
+    margin: 0 auto;
+    text-align: left;
+}
+.main-heading {
+    color: red;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}

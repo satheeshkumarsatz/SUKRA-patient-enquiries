@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Patient Enquiries</title>
+    <style>
+      body { font-family: Arial; }
+      table, th, td { border: 1px solid black; border-collapse: collapse; padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>Open Patient Enquiries</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Enquiry</th>
+        <th>Action</th>
+      </tr>
+	{% for item in items %}
+	<tr>
+  	<td>{{ loop.index }}</td>
+ 	 <td>{{ item.patient_name }}</td>
+  	<td>{{ item.enquiry }}</td>
+	  <td><a href="/close/{{ item.row_number }}">Mark as Closed</a></td>
+	</tr>
+	{% endfor %}
+    </table>
+
+    <h2>Submit New Enquiry</h2>
+    <form method="POST" action="/submit">
+      Name: <input type="text" name="name" /><br/>
+      Enquiry: <textarea name="enquiry"></textarea><br/>
+      <input type="submit" value="Submit"/>
+    </form>
+  </body>
+</html>
