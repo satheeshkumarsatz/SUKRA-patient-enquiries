@@ -19,7 +19,12 @@ if not creds_json:
     raise Exception("GOOGLE_CREDS_JSON environment variable not set")
 
 creds_data = json.loads(creds_json)
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_data, SCOPE)
+try:
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_data, SCOPE)
+except Exception as e:
+    print("GOOGLE CREDS LOAD ERROR:", str(e))
+    raise
+
 client = gspread.authorize(credentials)
 sheet = client.open(SPREADSHEET_NAME).sheet1
 
