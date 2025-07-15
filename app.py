@@ -105,6 +105,10 @@ def close(row_number):
     sheet.update_cell(row_number + 1, 10, status)  # column 10 = Status
     return redirect('/')
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
 
