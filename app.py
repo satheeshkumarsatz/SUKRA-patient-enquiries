@@ -42,10 +42,6 @@ def index():
                            status_options=STATUS_OPTIONS,
 	                           nurse_options=NURSE_OPTIONS)
 
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-
 @app.route('/submit', methods=['POST'])
 def submit():
     if request.form['action'] == 'cancel':
