@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request, redirect
+import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -111,8 +112,6 @@ def close(row_number):
     status = request.args.get('status')   # Get the ?status= value from the URL
     sheet.update_cell(row_number + 1, 10, status)  # column 10 = Status
     return redirect('/')
-
-import os
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
