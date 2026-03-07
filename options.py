@@ -7,4 +7,4 @@ TIMING_OPTIONS = ['NONE','06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', '08:00 
 '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM', '08:00 PM', '08:30 PM', '09:00 PM', '09:30 PM',
 '10:00 PM']
 STATUS_OPTIONS = ['Cancelled', 'Completed', 'Open', 'Dr & Pt apt Confirmed', 'Dr Apt Confirmed', 'Pt Apt Confirmed']
-NURSE_OPTIONS = ['ANU','RAJESH J','PRIYA','Venkat','Chevvanthi','Gayathri','Ilavarasi']
+NURSE_OPTIONS = ['ANU','Ajay','PRIYA','Venkat','Chevvanthi','Gayathri','Ilavarasi',Suseela]
