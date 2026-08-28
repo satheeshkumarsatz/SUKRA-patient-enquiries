@@ -24,5 +24,4 @@ const STATUS_OPTIONS = ['Cancelled', 'Completed', 'Open', 'Dr & Pt apt Confirmed
   'Dr Apt Confirmed', 'Pt Apt Confirmed'];
 
 // ---- Staff names for BOTH "Attended By" and "Handover To" ----
-const NURSE_OPTIONS = ['ANU', 'Ajay', 'PRIYA', 'Venkat', 'Chevvanthi', 'Gayathri',
-  'Ilavarasi', 'Suseela'];
+const NURSE_OPTIONS = ['ANU', 'Ajay', 'Srinath', 'Venkat', 'Vimala', 'Ilavarasi', 'Suseela'];
