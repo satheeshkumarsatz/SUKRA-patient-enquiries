@@ -1,0 +1,109 @@
+/* ===== Sukra Hospital brand palette ===== */
+:root{
+  --blue:#00a3ff; --blue-d:#0089db;
+  --pink:#ec008c; --pink-d:#c60077;
+  --green:#22b573; --purple:#7a5cff;
+  --ink:#243746; --muted:#6b7c8a;
+  --line:#e6ebf0; --bg:#f4f8fb;
+}
+*{box-sizing:border-box}
+body{font-family:"Segoe UI",Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
+
+/* ===== Top contact bar ===== */
+.topbar{background:linear-gradient(90deg,var(--blue),var(--blue-d));color:#fff;font-size:13px}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:8px 20px;display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+
+/* ===== Header ===== */
+.site-header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;
+  justify-content:space-between;padding:12px 24px;flex-wrap:wrap;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{height:56px;width:auto}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.brand-name{font-size:22px;font-weight:800;background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.5px}
+.brand-sub{font-size:12px;color:var(--muted);font-weight:600}
+.btn-website{background:var(--blue);color:#fff;text-decoration:none;padding:9px 16px;border-radius:8px;
+  font-size:13px;font-weight:600;transition:.2s}
+.btn-website:hover{background:var(--blue-d)}
+
+/* ===== Dashboard cards ===== */
+.cards{max-width:1400px;margin:20px auto 6px;padding:0 20px;display:grid;
+  grid-template-columns:repeat(4,1fr);gap:16px}
+.card{border-radius:14px;padding:18px 20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card-num{font-size:34px;font-weight:800;line-height:1}
+.card-label{font-size:13px;opacity:.95;margin-top:6px;font-weight:600}
+.card-blue{background:linear-gradient(135deg,#00a3ff,#0072ff)}
+.card-pink{background:linear-gradient(135deg,#ff5ea8,#ec008c)}
+.card-green{background:linear-gradient(135deg,#2ed08a,#12a463)}
+.card-purple{background:linear-gradient(135deg,#9b7bff,#6a45ff)}
+
+/* ===== Toolbar ===== */
+.toolbar{max-width:1400px;margin:18px auto 8px;padding:0 20px;display:flex;gap:12px;
+  justify-content:center;flex-wrap:wrap}
+#searchBox{padding:11px 16px;width:380px;max-width:90vw;border:1px solid var(--line);
+  border-radius:10px;font-size:14px;background:#fff}
+#searchBox:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,163,255,.15)}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;border:none;
+  padding:11px 20px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:.2s}
+.btn-primary:hover{filter:brightness(1.05);box-shadow:0 4px 12px rgba(0,163,255,.35)}
+.btn-grey{background:#e7edf2;color:#333;border:none;padding:11px 20px;border-radius:10px;
+  cursor:pointer;font-size:14px;font-weight:600}
+
+/* ===== Table ===== */
+main{max-width:1400px;margin:0 auto;padding:6px 20px 30px}
+.loading{text-align:center;color:var(--muted);padding:24px}
+.table-wrap{overflow-x:auto;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.06);background:#fff}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:1100px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
+thead th{background:linear-gradient(90deg,var(--pink),var(--pink-d));color:#fff;white-space:nowrap;
+  position:sticky;top:0;font-weight:600}
+tbody tr:nth-child(even){background:#fbfcfe}
+tbody tr:hover{background:#eef7ff}
+.name-link{color:var(--blue-d);font-weight:700;text-decoration:none}
+.name-link:hover{text-decoration:underline}
+.act-link{color:var(--pink);font-weight:700;text-decoration:none}
+.act-link:hover{text-decoration:underline}
+
+/* ===== Status badges ===== */
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;
+  white-space:nowrap}
+.b-open{background:#fff3d6;color:#9a6b00}
+.b-confirmed{background:#d9f7e6;color:#12864f}
+.b-drpt{background:#e0ecff;color:#1857c7}
+.b-default{background:#eceff3;color:#5a6b78}
+
+/* ===== Footer ===== */
+.site-footer{text-align:center;color:var(--muted);font-size:13px;padding:18px;
+  border-top:1px solid var(--line);background:#fff}
+
+/* ===== Modals ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,30,45,.5);
+  justify-content:center;align-items:flex-start;padding:40px 16px;overflow-y:auto;z-index:100}
+.modal{background:#fff;border-radius:14px;padding:24px;width:640px;max-width:96vw;
+  box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal h2{margin-top:0;background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.modal-actions{margin-top:18px;display:flex;gap:12px;justify-content:flex-end}
+.modal-actions.center{justify-content:center}
+
+/* Edit form rows */
+.form-rows{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.frow{display:grid;grid-template-columns:190px 1fr;align-items:center;border-bottom:1px solid var(--line)}
+.frow:nth-child(odd){background:#f8fbfe}
+.frow:last-child{border-bottom:none}
+.frow label{padding:11px 14px;font-size:13px;font-weight:700;color:var(--ink)}
+.frow input,.frow select{margin:8px 14px;padding:9px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+.frow input:focus,.frow select:focus{outline:none;border-color:var(--blue)}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
+
+/* Status popup */
+.status-modal{width:560px;text-align:center}
+.status-title{font-size:20px;font-weight:700}
+.status-buttons{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:10px 0 4px}
+.status-buttons .btn-primary{min-width:130px}
+
+/* Responsive cards */
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
