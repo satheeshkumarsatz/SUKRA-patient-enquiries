@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sukra Patient Enquiries</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=pUd_Hzjn0dEZU8zEdVBDNi5QmXANp9fXAhAKA0ZSZsRRbbzU5Elvr-_pOu6JChUFcTyhs3XkK_Rmkk2g_flbbBs0vri4SgM1oQM36W613x7OjM2_HPZ9cVWWsMArLBLpoBqoOLbM-Oc8Hlmw3X4v-TIUnOSlhRMTfm86bAyv18Oz_qk_iB0JzgEQPMbNoqxkh_BGnMBXTh9vaYwWG7bTMCgbV9V2Y74w96MPEvpZ6U5hUx3gvaPG3WTrlQuI795DHOfrLa-Q-ACXo9KsK-ptNR30B8I9p35O-2yaDkQCHSNjRQDwUBfOf9OP58l5pdXtqoWk1dRiLSmFOr1g8La4mA" charset="UTF-8"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Open Patient Enquiries</h1>
+    <div class="toolbar">
+      <input id="searchBox" type="text" placeholder="Search name / mobile / doctor..." />
+      <button class="btn-primary" onclick="openForm()">+ Submit New Enquiry</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="loading" class="loading">Loading enquiries...</div>
+    <div class="table-wrap">
+      <table id="enquiryTable">
+        <thead>
+          <tr>
+            <th>ID</th><th>Date</th><th>Mode</th><th>Name</th><th>Mobile</th>
+            <th>AppDate</th><th>Timing</th><th>Doctor</th><th>RequestFor</th>
+            <th>Comment</th><th>Status</th><th>Attendedby</th><th>HandoverTo</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ===== Update Status popup (quick status buttons) ===== -->
+  <div id="statusModal" class="modal-overlay">
+    <div class="modal status-modal">
+      <h2 class="status-title">Update Status:</h2>
+      <input type="hidden" id="statusRecordId" />
+      <div id="statusButtons" class="status-buttons"></div>
+      <div class="modal-actions center">
+        <button class="btn-primary" onclick="closeStatusPopup()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Full Add / Edit Enquiry form ===== -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal">
+      <h2 id="modalTitle">Edit Enquiry</h2>
+      <input type="hidden" id="recordId" />
+      <div class="form-rows">
+        <div class="frow"><label>Date:</label><input type="date" id="f_date" /></div>
+        <div class="frow"><label>Name:</label><input type="text" id="f_name" /></div>
+        <div class="frow"><label>Mobile Number:</label><input type="text" id="f_mobile" /></div>
+        <div class="frow"><label>Mode:</label><select id="f_mode"></select></div>
+        <div class="frow"><label>Appointment Date:</label><input type="date" id="f_appdate" /></div>
+        <div class="frow"><label>Timing:</label><select id="f_timing"></select></div>
+        <div class="frow"><label>Doctor:</label><select id="f_doctor"></select></div>
+        <div class="frow"><label>Request For:</label><input type="text" id="f_request" /></div>
+        <div class="frow"><label>Comment:</label><input type="text" id="f_comment" /></div>
+        <div class="frow"><label>Status:</label><select id="f_status"></select></div>
+        <div class="frow"><label>Attended By:</label><select id="f_attended"></select></div>
+        <div class="frow"><label>Handover To:</label><input type="text" id="f_handover" /></div>
+      </div>
+      <div class="modal-actions center">
+        <button class="btn-primary" onclick="saveRecord()">Update</button>
+        <button class="btn-grey" onclick="closeForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

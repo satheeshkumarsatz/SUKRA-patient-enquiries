@@ -1,0 +1,67 @@
+* { box-sizing: border-box; }
+body {
+  font-family: Segoe UI, Arial, sans-serif;
+  margin: 0; padding: 0; background: #f6f7fb; color: #222;
+}
+header { padding: 18px 24px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+header h1 { color: #c0392b; text-align: center; margin: 0 0 14px; font-size: 26px; }
+.toolbar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+#searchBox {
+  padding: 9px 14px; width: 320px; max-width: 90vw;
+  border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+}
+.btn-primary {
+  background: #2d7ff9; color: #fff; border: none; padding: 9px 18px;
+  border-radius: 6px; cursor: pointer; font-size: 14px;
+}
+.btn-primary:hover { background: #1b6ae0; }
+.btn-grey {
+  background: #e0e0e0; color: #333; border: none; padding: 9px 18px;
+  border-radius: 6px; cursor: pointer; font-size: 14px;
+}
+main { padding: 24px; }
+.loading { text-align: center; color: #888; padding: 20px; }
+.table-wrap { overflow-x: auto; }
+table {
+  border-collapse: collapse; width: 100%; background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); font-size: 13px;
+}
+th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+thead th { background: #b784a7; color: #fff; white-space: nowrap; }
+tbody tr:nth-child(even) { background: #faf8fb; }
+tbody tr:hover { background: #f0eef5; }
+td a { color: #2d7ff9; text-decoration: none; }
+td a:hover { text-decoration: underline; }
+.name-link { font-weight: 600; }
+
+/* ===== Modal shared ===== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.45); justify-content: center; align-items: flex-start;
+  padding: 40px 16px; overflow-y: auto; z-index: 100;
+}
+.modal { background: #fff; border-radius: 10px; padding: 24px; width: 640px; max-width: 96vw; }
+.modal h2 { margin-top: 0; color: #c0392b; }
+.modal-actions { margin-top: 18px; display: flex; gap: 12px; justify-content: flex-end; }
+.modal-actions.center { justify-content: center; }
+
+/* ===== Edit form as label/value rows (like your screenshot) ===== */
+.form-rows { border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+.frow {
+  display: grid; grid-template-columns: 200px 1fr; align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.frow:nth-child(odd) { background: #f7f7f9; }
+.frow:last-child { border-bottom: none; }
+.frow label { padding: 10px 14px; font-size: 13px; font-weight: 600; }
+.frow input, .frow select {
+  margin: 8px 14px; padding: 8px; border: 1px solid #ccc;
+  border-radius: 5px; font-size: 14px;
+}
+@media (max-width: 560px){ .frow { grid-template-columns: 1fr; } }
+
+/* ===== Status popup ===== */
+.status-modal { width: 560px; text-align: center; }
+.status-title { color: #333; font-size: 16px; font-weight: 600; }
+.status-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 8px 0 4px; }
+.status-buttons .btn-primary { min-width: 120px; }
