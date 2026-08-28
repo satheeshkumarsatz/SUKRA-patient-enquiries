@@ -67,6 +67,19 @@ function updateStats(rows) {
   document.getElementById('statPending').innerText = openCount;
 }
 
+// ---------- Date formatter: 2026-08-27 -> 27-Aug-2026 ----------
+const _MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtDate(d) {
+  if (!d) return '';
+  const s = String(d).slice(0, 10);           // handle timestamps too
+  const p = s.split('-');
+  if (p.length !== 3) return d;                 // leave as-is if unexpected
+  const [y, m, day] = p;
+  const mi = parseInt(m, 10) - 1;
+  if (mi < 0 || mi > 11) return d;
+  return `${day}-${_MON[mi]}-${y}`;
+}
+
 // ---------- Status badge helper ----------
 function statusBadge(s) {
   s = s || '';
@@ -88,11 +101,11 @@ function renderTable(rows) {
   body.innerHTML = rows.map(r => `
     <tr>
       <td>${r.id}</td>
-      <td>${r.enquiry_date || ''}</td>
+      <td>${fmtDate(r.enquiry_date)}</td>
       <td>${r.mode || ''}</td>
       <td><a href="#" class="name-link" onclick="editRecord(${r.id});return false;">${r.patient_name || ''}</a></td>
       <td>${r.mobile || ''}</td>
-      <td>${r.appointment_date || ''}</td>
+      <td>${fmtDate(r.appointment_date)}</td>
       <td>${r.timing || ''}</td>
       <td>${r.doctor || ''}</td>
       <td>${r.request_for || ''}</td>
@@ -100,7 +113,7 @@ function renderTable(rows) {
       <td>${statusBadge(r.status)}</td>
       <td>${r.attended_by || ''}</td>
       <td>${r.handover_to || ''}</td>
-      <td><a href="#" class="act-link" onclick="openStatusPopup(${r.id});return false;">Update Status</a></td>
+      <td><a href="#" class="act-link" onclick="openStatusPopup(${r.id});return false;">Update</a></td>
     </tr>`).join('');
 }
 
