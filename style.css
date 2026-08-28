@@ -56,7 +56,9 @@ main{max-width:1400px;margin:0 auto;padding:6px 20px 30px}
 .loading{text-align:center;color:var(--muted);padding:24px}
 .table-wrap{overflow-x:auto;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.06);background:#fff}
 table{border-collapse:collapse;width:100%;font-size:13px;min-width:1100px}
-th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+/* allow only these wider free-text columns to wrap if very long */
+td:nth-child(9),td:nth-child(10){white-space:normal}
 thead th{background:linear-gradient(90deg,var(--pink),var(--pink-d));color:#fff;white-space:nowrap;
   position:sticky;top:0;font-weight:600}
 tbody tr:nth-child(even){background:#fbfcfe}
