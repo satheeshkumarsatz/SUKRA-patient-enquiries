@@ -1,13 +1,12 @@
 // ============================================================
-//  SUKRA PATIENT ENQUIRIES - App Logic
-//  Two actions (matches your original app):
-//   1) Click NAME          -> full Edit Enquiry form (edit all fields)
-//   2) Click Update Status -> quick status popup with buttons
+//  SUKRA HOSPITAL - Patient Enquiries - App Logic
+//   1) Click NAME          -> full Edit Enquiry form
+//   2) Click Update Status -> quick status popup
+//   + dashboard counts + colored status badges
 // ============================================================
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let allRows = [];   // cache of open enquiries for instant search
+let allRows = [];
 
 // ---------- Startup ----------
 window.addEventListener('DOMContentLoaded', () => {
@@ -24,13 +23,14 @@ function fillDropdowns() {
   fillSelect('f_doctor', DOCTOR_OPTIONS);
   fillSelect('f_status', STATUS_OPTIONS);
   fillSelect('f_attended', NURSE_OPTIONS);
+  fillSelect('f_handover', NURSE_OPTIONS);   // Handover To is now a dropdown too
 }
 function fillSelect(id, options) {
   document.getElementById(id).innerHTML =
     options.map(o => `<option value="${o}">${o}</option>`).join('');
 }
 
-// ---------- Build the quick-status buttons once ----------
+// ---------- Quick-status buttons ----------
 function buildStatusButtons() {
   document.getElementById('statusButtons').innerHTML =
     STATUS_OPTIONS.map(s =>
@@ -38,7 +38,7 @@ function buildStatusButtons() {
     ).join('');
 }
 
-// ---------- Load open enquiries ----------
+// ---------- Load ----------
 async function loadEnquiries() {
   document.getElementById('loading').style.display = 'block';
   const { data, error } = await db
@@ -51,13 +51,38 @@ async function loadEnquiries() {
   if (error) { alert('Error loading data: ' + error.message); return; }
   allRows = data || [];
   renderTable(allRows);
+  updateStats(allRows);
+}
+
+// ---------- Dashboard counts ----------
+function updateStats(rows) {
+  const today = new Date().toISOString().slice(0, 10);
+  const total = rows.length;
+  const todayCount = rows.filter(r => r.appointment_date === today).length;
+  const confirmed = rows.filter(r => (r.status || '').toLowerCase().includes('confirmed')).length;
+  const openCount = rows.filter(r => (r.status || '') === 'Open').length;
+  document.getElementById('statTotal').innerText = total;
+  document.getElementById('statToday').innerText = todayCount;
+  document.getElementById('statConfirmed').innerText = confirmed;
+  document.getElementById('statPending').innerText = openCount;
+}
+
+// ---------- Status badge helper ----------
+function statusBadge(s) {
+  s = s || '';
+  const l = s.toLowerCase();
+  let cls = 'b-default';
+  if (l === 'open') cls = 'b-open';
+  else if (l.includes('confirmed') && (l.includes('dr &') || l.includes('dr & pt'))) cls = 'b-drpt';
+  else if (l.includes('confirmed')) cls = 'b-confirmed';
+  return `<span class="badge ${cls}">${s}</span>`;
 }
 
 // ---------- Render table ----------
 function renderTable(rows) {
   const body = document.getElementById('tableBody');
   if (!rows.length) {
-    body.innerHTML = `<tr><td colspan="14" style="text-align:center">No open enquiries</td></tr>`;
+    body.innerHTML = `<tr><td colspan="14" style="text-align:center;padding:24px;color:#6b7c8a">No open enquiries 🎉</td></tr>`;
     return;
   }
   body.innerHTML = rows.map(r => `
@@ -72,10 +97,10 @@ function renderTable(rows) {
       <td>${r.doctor || ''}</td>
       <td>${r.request_for || ''}</td>
       <td>${r.comments || ''}</td>
-      <td>${r.status || ''}</td>
+      <td>${statusBadge(r.status)}</td>
       <td>${r.attended_by || ''}</td>
       <td>${r.handover_to || ''}</td>
-      <td><a href="#" onclick="openStatusPopup(${r.id});return false;">Update Status</a></td>
+      <td><a href="#" class="act-link" onclick="openStatusPopup(${r.id});return false;">Update Status</a></td>
     </tr>`).join('');
 }
 
@@ -90,7 +115,7 @@ function doSearch() {
 }
 
 // ============================================================
-//  ACTION 2 : Update Status popup (quick buttons)
+//  ACTION 2 : Update Status popup
 // ============================================================
 function openStatusPopup(id) {
   document.getElementById('statusRecordId').value = id;
@@ -104,13 +129,13 @@ async function applyStatus(status) {
   const { error } = await db.from('enquiries').update({ status }).eq('id', id);
   if (error) { alert('Update failed: ' + error.message); return; }
   closeStatusPopup();
-  loadEnquiries();   // Completed/Cancelled drop off the open list automatically
+  loadEnquiries();
 }
 
 // ============================================================
-//  ACTION 1 : Full Edit Enquiry form (click Name)
+//  ACTION 1 : Full Edit / New form
 // ============================================================
-function openForm() {              // + Submit New Enquiry (blank)
+function openForm() {
   document.getElementById('modalTitle').innerText = 'New Enquiry';
   document.getElementById('recordId').value = '';
   document.getElementById('f_date').value = new Date().toISOString().slice(0, 10);
@@ -124,11 +149,11 @@ function openForm() {              // + Submit New Enquiry (blank)
   document.getElementById('f_comment').value = '';
   document.getElementById('f_status').value = 'Open';
   document.getElementById('f_attended').value = NURSE_OPTIONS[0];
-  document.getElementById('f_handover').value = '';
+  document.getElementById('f_handover').value = NURSE_OPTIONS[0];
   document.getElementById('modal').style.display = 'flex';
 }
 
-function editRecord(id) {          // click Name -> pre-filled edit
+function editRecord(id) {
   const r = allRows.find(x => x.id === id);
   if (!r) return;
   document.getElementById('modalTitle').innerText = 'Edit Enquiry';
@@ -144,7 +169,7 @@ function editRecord(id) {          // click Name -> pre-filled edit
   document.getElementById('f_comment').value = r.comments || '';
   document.getElementById('f_status').value = r.status || 'Open';
   document.getElementById('f_attended').value = r.attended_by || NURSE_OPTIONS[0];
-  document.getElementById('f_handover').value = r.handover_to || '';
+  document.getElementById('f_handover').value = r.handover_to || NURSE_OPTIONS[0];
   document.getElementById('modal').style.display = 'flex';
 }
 
@@ -152,7 +177,7 @@ function closeForm() {
   document.getElementById('modal').style.display = 'none';
 }
 
-async function saveRecord() {      // Update button (insert new OR update existing)
+async function saveRecord() {
   const id = document.getElementById('recordId').value;
   const record = {
     enquiry_date:     document.getElementById('f_date').value || null,
@@ -168,7 +193,6 @@ async function saveRecord() {      // Update button (insert new OR update existi
     attended_by:      document.getElementById('f_attended').value,
     handover_to:      document.getElementById('f_handover').value
   };
-
   let error;
   if (id) {
     ({ error } = await db.from('enquiries').update(record).eq('id', id));
