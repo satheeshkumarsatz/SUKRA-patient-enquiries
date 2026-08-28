@@ -12,7 +12,7 @@ const MODE_OPTIONS = ['Phonecall', 'WhatsApp', 'Direct', 'Referral'];
 const DOCTOR_OPTIONS = ['Dr. Krishna', 'Dr. Santhosh', 'Dr. Srinivasalu', 'Dr. Srinivasan',
   'Dr. Divya Murugesan', 'Dr. Renuka', 'Dr. Rajasekar', 'Dr. Jayaganthan', 'Dr. Kailash',
   'Dr. Sathish Kumar', 'Dr. Mathusudhanan', 'Dr. Ashok', 'Dr. Arunprasad', 'Dr. Divya Devi',
-  'Dr. Haroon', 'Dr. Pratap Kumar', 'Other'];
+  'Dr. Haroon', 'Dr. Pratap Kumar','Dr. Haroon', 'Other'];
 
 const TIMING_OPTIONS = ['NONE', '06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', '08:00 AM',
   '08:30 AM', '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
@@ -23,5 +23,5 @@ const TIMING_OPTIONS = ['NONE', '06:00 AM', '06:30 AM', '07:00 AM', '07:30 AM', 
 const STATUS_OPTIONS = ['Cancelled', 'Completed', 'Open', 'Dr & Pt apt Confirmed',
   'Dr Apt Confirmed', 'Pt Apt Confirmed'];
 
-const NURSE_OPTIONS = ['ANU', 'Ajay', 'PRIYA', 'Venkat', 'Chevvanthi', 'Gayathri',
+const NURSE_OPTIONS = ['ANU', 'Ajay', 'Venkat', 'Vimala', 'Srinath',
   'Ilavarasi', 'Suseela'];
