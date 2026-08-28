@@ -6,7 +6,7 @@
   <title>Sukra Hospital — Patient Enquiries</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" />
-  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=SybNzkgH8_3I2YlnQFOTDmw27XN3yqKsd7__QLydpOq91fr7GGwr_g46bln-3WDzhWMGNchYVeuK5-0ZToAN-DwmSbUOR_UgHbDZol3qd-KqjnvXJ6_irmvKVB4Wdiq5tKCqmCPPMeIFxRkAnwBe9qJvxJLn9hqA5JMoPoxxVz-4Q5djZA7Ujwy-IjGH7Kb3AuUrjxwTuDkLbSPPX-F0nZKAQmCWvImp-Lhfa-ZciP5mhrfWQXYmPz5hkyvcfC8Uor8N2SNJsWqycKtWs09uQuu-vdI7Owwbrm67fBrip36wT5xqDVVWhDy26PZjkZ3IwlW1_xyhvzPYy6-7n3emdQ" charset="UTF-8"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -20,10 +20,12 @@
   </div>
 
   <!-- ===== Header with logo ===== -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="logo.png" alt="Sukra Hospital" class="logo" onerror="this.style.display='none'" />
-      <div class="brand-text">
+  <header class="site-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+    <div class="brand" style="display:flex;align-items:center;gap:14px;">
+      <img src="logo.png" alt="Sukra Hospital" class="logo"
+           style="height:60px;width:auto;max-width:60px;object-fit:contain;"
+           onerror="this.style.display='none'" />
+      <div class="brand-text" style="display:flex;flex-direction:column;line-height:1.2;">
         <span class="brand-name">SUKRA HOSPITAL</span>
         <span class="brand-sub">Patient Enquiry Management</span>
       </div>
